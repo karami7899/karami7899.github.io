@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ali Karami </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --main-theme: #55BC86;
+            --bg-color: #090000;
+            --tooltip-bg-color: #0900007c;
+            --text-color: ghostwhite;
+            --main-bg-color: #1D1F20;
+            --profile-bg-color: #1C1C1C;
+            --scrollbar-thumb-bg-color: #646467;
+            --icon-color: #808083;
+            --border-color: #2C2C2C;
+        }
+        ::selection {
+            background-color: var(--icon-color);
+            color: var(--main-bg-color);
+        }
+        p, h2, h4 {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        a {
+            cursor: pointer;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background-color: var(--tooltip-bg-color);
+            width: auto;
+            color: var(--text-color);
+            padding: .5em;
+            right: 50px;
+            font-size: .85em;
+            width: max-content;
+            position: absolute;
+            z-index: 1;
+            font-family: Arial, sans-serif;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+        }
+        html {
+            scrollbar-color: var(--main-theme) var(--profile-bg-color);
+            scrollbar-width: thin;
+        }
+        #summary, #research, #software {
+            scrollbar-color: var(--scrollbar-thumb-bg-color) var(--profile-bg-color);
+            scrollbar-width: thin;
+        }
+        html::-webkit-scrollbar, #summary::-webkit-scrollbar, #research::-webkit-scrollbar, #software::-webkit-scrollbar
+        {
+            width: 8px;
+            background-color: var(--profile-bg-color);
+        }
+        html::-webkit-scrollbar-thumb
+        {
+            background-color: var(--main-theme);
+        }
+        #summary::-webkit-scrollbar-thumb, #research::-webkit-scrollbar-thumb, #software::-webkit-scrollbar-thumb
+        {
+            background-color: var(--scrollbar-thumb-bg-color);
+        }
+        .icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 3.33px;
+            height: 46.67px;
+        }
+        div.icon-wrapper:nth-child(1) {
+            background-color: var(--main-theme);
+        }
+        div.icon-wrapper:nth-child(1) > a > i {
+            font-size: 1.5em;
+            color: var(--main-bg-color);
+        }
+        aside {
+            display: grid;
+            grid-template-rows: 50px 500px 50px;
+        }
+        aside > ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+        }
+        aside > ul > .icon-wrapper > a > i:not(.bi-person), div.icon-wrapper:nth-child(3) > a > i, #social-media > li > a > i {
+            color: var(--icon-color);
+            font-size: 1.5em;
+        }
+        #social-media > li > a:hover > i {
+            color: var(--text-color);
+        }
+        .bi-person {
+            font-size: 2em;
+        }
+        .bi-person, div.icon-wrapper:nth-child(3) > a > i {
+            color: var(--main-theme);
+        }
+        main {
+            background-color: var(--main-bg-color);
+            margin: 50px auto;
+            width: 800px;
+            height: 600px;
+            display: grid;
+            grid-template-columns: 50px 2fr 3fr;
+        }
+        #profile {
+            height: 650px;
+            margin-top: -25px;
+            background-color: var(--profile-bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        #profile > img {
+            width: 150px;
+            height: 150px;
+            border-radius: 100px;
+            border: 5px solid var(--main-bg-color);
+            margin: 50px auto;
+        }
+        #summary {
+            overflow-y: scroll;
+            height: inherit;
+        }
+        #about-me  {
+            font-family: Arial, sans-serif;
+        }
+        #about-me > h2 {
+            color: var(--text-color);
+        }
+        #about-me > h4 {
+            color: var(--icon-color);
+            margin-top: .5em;
+        }
+        #about-me > h4 > a {
+            color: var(--icon-color);
+            text-decoration: none;
+        }
+        #about-me > h4:nth-child(3) {
+            margin-top: 1.5em;
+        }
+        #social-media-wrapper {
+            width: 60%;
+            position: absolute;
+            bottom: 0;
+            padding: 0 20%;
+        }
+        #social-media {
+            list-style-type: none;
+            margin: 0;
+            padding: 0  0 50px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        #summary > div {
+            font-family: Arial, sans-serif;
+            margin: 1.5em 1.5em 0 1.5em;
+            padding-bottom: 1.5em;
+        }
+        #summary > div:not(#links) {
+            border-bottom: 1px solid var(--border-color);
+        }
+        #summary > div > h2 {
+            color: var(--text-color);
+            margin-bottom: .25em;
+        }
+        #summary > div > p {
+            color: var(--icon-color);
+            text-align: justify;
+            font-size: .85em;
+        }
+        #links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-row-gap: 1em;
+        }
+        .link-title {
+            color: var(--text-color);
+            height: 30px;
+        }
+        .link-title > a {
+            text-decoration: none;
+            color: var(--text-color);
+            height: inherit;
+            display: inline-block;
+        }
+        .link-title > a > h4 {
+            height: inherit;
+        }
+        .link-title > a > h4 > i {
+            font-size: 1.25em;
+            float: left;
+            display: block;
+            height: 27px;
+            padding-top: 3px;
+            color: var(--main-theme);
+        }
+        .link-title > a > h4 > span {
+            font-weight: 300;
+            height: 20px;
+            display: block;
+            float: left;
+            padding: 5px;
+        }
+        .link-desc {
+            text-align: justify;
+            color: var(--icon-color);
+            font-size: .85em;
+            padding: 0 1em;
+        }
+        #educational, #software, #research, #honors, #teaching {
+            display: none;
+            font-family: Arial, sans-serif;
+            color: var(--text-color);
+            text-align: justify;
+            height: 625px;
+            margin-top: -25px;
+            background-color: var(--profile-bg-color);
+            padding: 25px 50px 0 50px;
+        }
+        #research, #software {
+            overflow-y: scroll;
+        }
+        #research > article, #software > article {
+            background-color: var(--main-bg-color);
+            margin-bottom: 15px;
+        }
+        .article-header {
+            background-color: var(--main-theme);
+            padding: 15px;
+            align-items: center;
+            justify-content: space-between;
+            display: flex;
+            cursor: pointer;
+        }
+        .article-header > i {
+            margin-left: 15px;
+        }
+        .bi-caret-up {
+            display: none;
+        }
+        #research > article.active > .article-header > i.bi-caret-up, #software > article.active > .article-header > i.bi-caret-up {
+            display: inline;
+        }
+        #research > article.active > .article-header > i.bi-caret-down, #software > article.active > .article-header > i.bi-caret-down {
+            display: none;
+        }
+        .article-body {
+            padding: 15px;
+            display: none;
+        }
+        #research > article.active > .article-body, #software > article.active > .article-body {
+            display: block;
+        }
+        .article-body > *:not(:last-child) {
+            margin-bottom: 15px;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+        .mySlides {
+            display: none;
+        }
+        .mySlides > img {
+            width: 100%;
+            height: 400px;
+        }
+        .prev-slide, .next-slide {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next-slide {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev-slide:hover, .next-slide:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .text-slide {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+        .dot-slide {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active-slide, .dot-slide:hover {
+            background-color: #717171;
+        }
+        .fade-slide {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @-webkit-keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+        .tab {
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <aside>
+            <div class="icon-wrapper tooltip">
+                <a href=""><i class="bi bi-cloud-download"></i></a>
+                <span class="tooltiptext">Download CV</span>
+            </div>
+            <ul>
+                <li class="icon-wrapper tooltip">
+                    <a onclick="showProfile()"><i class="bi bi-person"></i></a>
+                    <span class="tooltiptext">Profile</span>
+                </li>
+                <li class="icon-wrapper tooltip">
+                    <a onclick="toggle('educational', 'bi-book')"><i class="bi bi-book"></i></a>
+                    <span class="tooltiptext">Edu. Background</span>
+                </li>
+                <li class="icon-wrapper tooltip">
+                    <a onclick="toggle('research', 'bi-search')"><i class="bi bi-search"></i></a>
+                    <span class="tooltiptext">Publications</span>
+                </li>
+                <li class="icon-wrapper tooltip">
+                    <a onclick="toggle('software', 'bi-code-slash')"><i class="bi bi-code-slash"></i></a>
+                    <span class="tooltiptext">Notable Projects</span>
+                </li>
+                <li class="icon-wrapper tooltip">
+                    <a onclick="toggle('honors', 'bi-award')"><i class="bi bi-award"></i></a>
+                    <span class="tooltiptext">Honors</span>
+                </li>
+                <li class="icon-wrapper tooltip">
+                    <a onclick="toggle('teaching', 'bi-clipboard')"><i class="bi bi-clipboard"></i></a>
+                    <span class="tooltiptext">Teaching Experience</span>
+                </li>
+            </ul>
+        </aside>
+        <section id="profile">
+            <img src="profile.png" alt="Profile">
+            <div id="about-me">
+                <h2>Ali Karami</h2>
+                <h4>Graduate Electrical Engineering</h4>
+                <h4><i class="bi bi-geo-alt-fill"></i> Tehran, Iran</h4>
+                <h4><i class="bi bi-telephone-fill"></i> +98 939 112 0742</h4>
+                <h4><i class="bi bi-envelope-fill"></i> <a href="mailto:karami7899@gmail.com">karami7899@gmail.com</a> </h4>
+            </div>
+            <div id="social-media-wrapper">
+                <ul id="social-media">
+                    <li>
+                        <a href="https://www.linkedin.com/in/karami7899/"><i class="bi bi-linkedin"></i></a>
+                    </li>
+
+                    <li>
+                        <a href="https://join.skype.com/invite/ouQB8ou8CbZQ"><i class="bi bi-skype"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/karami7899"><i class="bi bi-github"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="summary">
+            <div>
+                <h2>Professional Summary</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis aperiam, recusandae soluta modi atque nam pariatur ipsum. Error, cumque incidunt eum minus molestiae quod alias quos laboriosam odio iusto, voluptate delectus nobis molestias officia quaerat quas ipsum? Deleniti ipsa, praesentium quia quasi officia dicta consequatur quod laborum ea inventore tempore minima perspiciatis id aspernatur ullam in, nihil quisquam. Recusandae sequi ratione ut nostrum provident, quas voluptatem sapiente? Veniam sit, sunt aliquid voluptas quia nam tenetur neque voluptate quibusdam expedita eos dolorum molestias laudantium soluta minus, modi alias unde at nostrum incidunt! Ipsa excepturi quibusdam sed reiciendis necessitatibus dignissimos aspernatur inventore?
+                </p>
+            </div>
+            <div id="links">
+                <div>
+                    <div class="link-title">
+                        <a href="">
+                            <h4>
+                                <i class="bi bi-cloud-download"></i>
+                                <span>Download CV</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="link-desc">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, voluptatem.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="link-title">
+                        <a onclick="toggle('educational', 'bi-book')">
+                            <h4>
+                                <i class="bi bi-book"></i>
+                                <span>Edu. Background</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="link-desc">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, voluptatem.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="link-title">
+                        <a onclick="toggle('research', 'bi-search')">
+                            <h4>
+                                <i class="bi bi-search"></i>
+                                <span>Publications</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="link-desc">
+                        <p>Presentations of my two Jornal Papers are available here.</p>
+                    </div>
+                </div>
+				<div>
+                    <div class="link-title">
+                        <a onclick="toggle('software', 'bi-code-slash')">
+                            <h4>
+                                <i class="bi bi-code-slash"></i>
+                                <span>Notable Projects</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="link-desc">
+                        <p>Details of my projects with codes and figures are available here.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="link-title">
+                        <a onclick="toggle('honors', 'bi-award')">
+                            <h4>
+                                <i class="bi bi-award"></i>
+                                <span>Honors</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="link-desc">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, voluptatem.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="link-title">
+                        <a onclick="toggle('teaching', 'bi-clipboard')">
+                            <h4>
+                                <i class="bi bi-clipboard"></i>
+                                <span>Teaching Experience</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="link-desc">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, voluptatem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="educational">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus et facilis voluptatum aperiam iste cumque corrupti ipsum ab ducimus velit id magnam quod, rerum laudantium quisquam at minima aliquam voluptas porro! Inventore ea, ut sequi placeat explicabo culpa nulla odio earum, numquam ab cumque. Placeat, saepe minus consequatur cumque laboriosam quia expedita ratione, dolore voluptatum quos ex sint est sit qui totam a ea odit porro veritatis perferendis similique rerum adipisci. Nemo, aliquid commodi neque quasi similique saepe dignissimos animi sed nam, dolorum cum dolores quam? Explicabo voluptas modi neque exercitationem, pariatur dolor debitis dolorum ratione, perspiciatis, nam dicta porro?</p>
+        
+		
+		</section>
+        <section id="software">
+
+		
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Feature Conditioning Methods and Generative/Discriminative Classifiers</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+                    <p>
+						Implementing feature conditioning methods to reduce feature dimensions and selecting the best Classifier based on
+						different criteria such as accuracy, precision, recall, etc. Codes available on my <a style="color:#306EFF;" href="https://github.com/karami7899/Feature-Conditioning-Methods-and-Generative-Discriminative-Classifiers">GitHub page</a>
+						
+					</p>
+					<p>			
+						Course: Machine Learning, University of Tehran
+
+					</p>
+					
+
+                </div>
+            </article>
+			
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Data Tidying</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<p>
+						Web scraping with python and extracting data from Html web pages <a style="color:#306EFF;" href="https://www.varzesh3.com/">Varzesh3</a> using BeautifulSoup.
+						Codes available on my <a style="color:#306EFF;" href="https://github.com/karami7899/Data-Tidying">GitHub page</a>
+						
+					</p>
+					<p>			
+						Course: Machine Learning, University of Tehran
+
+					</p>
+					
+					
+                    <div class="slideshow-container">
+                        <div class="mySlides container-1 fade-slide">
+                            <div class="numbertext">1 / 4</div>
+                            <img src="Web_Basketball_Table.jpg" style="width:100%">
+                            <div class="text-slide">Caption Text</div>
+                        </div>
+                        <div class="mySlides container-1 fade-slide">
+                            <div class="numbertext">2 / 4</div>
+                            <img src="Web_Transfers.jpg" style="width:100%">
+                            <div class="text-slide">Caption Two</div>
+                        </div>
+                        <div class="mySlides container-1 fade-slide">
+                            <div class="numbertext">3 / 4</div>
+                            <img src="Web_Volleyball_Table.jpg" style="width:100%">
+                            <div class="text-slide">Caption Three</div>
+                        </div>
+						<div class="mySlides container-1 fade-slide">
+                            <div class="numbertext">4 / 4</div>
+                            <img src="Web_WorldCup.jpg" style="width:100%">
+                            <div class="text-slide">Caption Three</div>
+                        </div>
+                        <a class="prev-slide" onclick="plusSlides(-1, 1)">&#10094;</a>
+                        <a class="next-slide" onclick="plusSlides(1, 1)">&#10095;</a>
+                    </div>
+                </div>
+            </article>
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Inverted Pendulum</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<p>
+						First, I modeled the inverted pendulum system and linearized it around its equilibrium point. Then I controlled the
+						system in position and angle by PID/pole-placement controllers in Matlab and Simulink. Codes available on my <a style="color:#306EFF;" href="https://github.com/karami7899/Inverted-Pendulum">GitHub page</a>
+						
+					</p>
+					<p>			
+						Course: Linear Control Systems, University of Tehran
+
+					</p>
+					
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/xUnefR4PixA?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/en">youtubeembedcode en</a></small></div><div><small><a href="https://kasinoutanspelpaus.se/">kasinoutanspelpaus.s</a></small></div></iframe>
+                    <div class="slideshow-container">
+                        <div class="mySlides container-2 fade-slide">
+                            <div class="numbertext">1 / 4</div>
+                            <img src="pandol3.jpg" style="width:100%">
+                            <div class="text-slide">Inverted Pendulum System</div>
+                        </div>
+                        <div class="mySlides container-2 fade-slide">
+                            <div class="numbertext">2 / 4</div>
+                            <img src="pandol4.png" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+                        <div class="mySlides container-2 fade-slide">
+                            <div class="numbertext">3 / 4</div>
+                            <img src="pandol2.png" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+						<div class="mySlides container-2 fade-slide">
+                            <div class="numbertext">4 / 4</div>
+                            <img src="pandol1.jpg" style="width:100%">
+                            <div class="text-slide">Matlab Circuit</div>
+                        </div>
+                        <a class="prev-slide" onclick="plusSlides(-1, 2)">&#10094;</a>
+                        <a class="next-slide" onclick="plusSlides(1, 2)">&#10095;</a>
+                    </div>
+                </div>
+            </article>
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>My Shazam - Music Search Engine</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<p>
+						Developing a Music Search Engine in Matlab using Signal Processing Algorithms, Fourier Transform, Signal Spectrum,
+						Digital Filters, etc. Codes available on my <a style="color:#306EFF;" href="https://github.com/karami7899/My-Shazam---Music-Search-Engine">GitHub page</a>
+						
+					</p>
+					<p>			
+						Course: Signals and Systems, University of Tehran
+
+					</p>
+					
+					
+                    <div class="slideshow-container">
+                        <div class="mySlides container-3 fade-slide">
+                            <div class="numbertext">1 / 2</div>
+                            <img src="shazem2.jpg" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+                        <div class="mySlides container-3 fade-slide">
+                            <div class="numbertext">2 / 2</div>
+                            <img src="shazem1.png" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+                        <a class="prev-slide" onclick="plusSlides(-1, 3)">&#10094;</a>
+                        <a class="next-slide" onclick="plusSlides(1, 3)">&#10095;</a>
+                    </div>
+                </div>
+            </article>
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>4-DOF Delta Parallel Robot</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<p>
+						Carry out the design, kinematic problem, and control of a 4-DOF Delta parallel manipulator.
+						Codes available on my <a style="color:#306EFF;" href="https://github.com/karami7899/4-DOF-Delta-Parallel-Robot">GitHub page</a>
+						
+					</p>
+					<p>			
+						Course: Fundamentals of Mechatronic Engineering, University of Tehran
+
+					</p>
+					
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/GWuBojOO43I?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/nl/">youtubeembedcode.com/nl/</a></small></div><div><small><a href="https://kasinoutansvensklicens.nu/">kasinoutansvensklicens.nu</a></small></div></iframe>
+                    <div class="slideshow-container">
+                        <div class="mySlides container-4 fade-slide">
+                            <div class="numbertext">1 / 4</div>
+                            <img src="delta\delta2.JPG" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+                        <div class="mySlides container-4 fade-slide">
+                            <div class="numbertext">2 / 4</div>
+                            <img src="delta\delta1.jpg" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+                        <div class="mySlides container-4 fade-slide">
+                            <div class="numbertext">3 / 4</div>
+                            <img src="delta\delta3.jpg" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+						<div class="mySlides container-4 fade-slide">
+                            <div class="numbertext">4 / 4</div>
+                            <img src="delta\delta4.jpg" style="width:100%">
+                            <div class="text-slide"></div>
+                        </div>
+                        <a class="prev-slide" onclick="plusSlides(-1, 4)">&#10094;</a>
+                        <a class="next-slide" onclick="plusSlides(1, 4)">&#10095;</a>
+                    </div>
+                </div>
+            </article>
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Obstacle Avoidance for Redundant Manipulator</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<p>
+						Using redundant robots instead of robots with full rank configuration space in the workspace with obstacles and solving
+						inverse kinematic equations of the redundant robots.
+						
+					</p>
+					<p>			
+						Course:  Linear Algebra, University of Tehran
+
+					</p>
+					
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/7rkmXiSZsoY?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/es/">youtubeembedcode es</a></small></div><div><small><a href="https://kasinoutanspelpaus.se/">kasinoutanspelpaus.s</a></small></div></iframe>
+                    <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/_X-M8hZRNHI?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/es/">youtubeembedcode.com/es/</a></small></div><div><small><a href="https://onlinecasinoutansvensklicens.se/">onlinecasinoutansvensklicens.se</a></small></div></iframe>
+                </div>
+            </article>
+			<article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Object Tracker and Facial Components Identifier</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<p>
+						Codes available on my <a style="color:#306EFF;" href="https://github.com/karami7899/Object-Tracker-and-Facial-Components-Identifier">GitHub page</a>
+						
+					</p>
+					<p>			
+						Course: Fundamentals of Mechatronic Engineering, University of Tehran
+
+					</p>
+					
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/TVjIQTlsrdA?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/en">youtubeembedcode en</a></small></div><div><small><a href="https://kasinoutansvensklicens.nu/">kasinoutansvensklicens.nu</a></small></div></iframe>
+                    <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/a7rdaDFR6S8?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/es/">youtubeembedcode es</a></small></div><div><small><a href="https://www.cusl.se/">cusl.se</a></small></div></iframe>
+                </div>
+            </article>
+			
+		</section>
+        <section id="research">
+            <article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Traffic Light Management System by Federated Deep Reinforcement Learning
+                        <small style="color: var(--profile-bg-color);">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, deserunt?</small>
+                    </p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">	
+                    <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/7A2ZQqxJZgk?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/nl/">youtubeembedcode nl</a></small></div><div><small><a href="https://onlinecasinoutansvensklicens.se/">onlinecasinoutansvensklicens.se</a></small></div></iframe>
+					<h1>Authords</h1>
+                    <p>
+						<strong>Ali Karami</strong>, Mina Montazeri, Hamed Kebriaei, Senior Member, IEEE
+					</p>
+					
+					<h1>Abstract</h1>
+                    <p class="tab">
+						Nowadays, traffic congestion is a severe problem in many countries around the world, affecting travel costs, travel time, accessibility, productivity, and environmental issues such as air pollution and global warming. In existing traffic lights, the duration of the traffic signals on each side of the intersection is either considered the same or adjusted using prior knowledge. To improve efficiency, it's necessary to dynamically set the duration of each signal based on the real-time traffic condition at the intersection. This paper aims to determine the duration of traffic signals based on the real-time data collected from the vehicular network. We propose a federated deep reinforcement learning model to control the traffic light system. By taking advantage of the federated learning method, agents working in different environments are connected to improve their performance. This allows agents to independently converge to a set of deep reinforcement learning model parameters and avoid overfitting to the local dataset. The number of states in vehicular networks is very large that it is impractical to discover and save every state-action pair. Thus we propose to use a convolutional neural network to approximate the Q value. We evaluate our model via the vehicular simulator that we have designed, and the simulation results show the efficiency of our model in controlling the traffic lights.
+					</p>
+				</div>
+            </article>
+            <article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>Dictionary Learning for Sparse Representation of Signals With Hidden Markov Model Dependency</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" type="text/html" src="https://www.youtube.com/embed/CMu7fCxV_RM?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/en">youtubeembedcode en</a></small></div><div><small><a href="https://nyacasinoutansvensklicens.se/">nyacasinoutansvensklicens.se</a></small></div></iframe>
+					<h1>Authords</h1>
+                    <p>
+						S. AKHAVAN, F. BAGHESTANI, P. KAZEMI, <strong>A. KARAMI</strong>, H. SOLTANIAN-ZADEH
+					</p>
+					
+					<h1>Abstract</h1>
+                    <p>
+						The goal of dictionary learning algorithms is factorizing the matrix of training signals Y with K signals, into the dictionary matrix D and the coefficient
+						matrix X which is a sparse matrix. The common approach among the algorithms is minimizing the representation error subject to the sparseness of X
+						using following alternation minimization method 1) the sparsification and 2)
+						the dictionary update steps. In this approach, when D is fixed and X must be
+						estimated (the sparsification step), the minimization problem is divided to K
+						different sparse recovery problems because the training signals are assumed to be
+						independent. However, in some signals such as medical signals, this assumption
+						is not correct and the signals are not independent. Therefore, using the current strategy does not lead to the correct estimation of the parameters. In this
+						study, we investigate the dictionary learning problem for sparse representation
+						when there is hidden Markov model (HMM) dependency among the training
+						signals. We propose an approach to improve the performance of the dictionary
+						learning algorithms in the mentioned scenario. The proposed approach is not an
+						independent dictionary learning algorithm. It is a general approach that we can
+						employ for existing dictionary learning algorithms to improve their performance
+						in learning from signals with HMM dependency. We confirm the efficiency of
+						the proposed approach using simulations, and also, present a real application in
+						medical signals for the considered scenario.
+					</p>
+					
+					
+                    <div class="slideshow-container">
+                        <div class="mySlides container-5 fade-slide">
+                            <div class="numbertext">1 / 3</div>
+                            <img src="1.jpg" style="width:100%">
+                            <div class="text-slide">Caption Text</div>
+                        </div>
+                        <div class="mySlides container-5 fade-slide">
+                            <div class="numbertext">2 / 3</div>
+                            <img src="2.jpg" style="width:100%">
+                            <div class="text-slide">Caption Two</div>
+                        </div>
+                        <div class="mySlides container-5 fade-slide">
+                            <div class="numbertext">3 / 3</div>
+                            <img src="3.jpg" style="width:100%">
+                            <div class="text-slide">Caption Three</div>
+                        </div>
+                        <a class="prev-slide" onclick="plusSlides(-1, 5)">&#10094;</a>
+                        <a class="next-slide" onclick="plusSlides(1, 5)">&#10095;</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div class="article-header" onclick="toggleTab(this)">
+                    <p>The Course Management System</p>
+                    <i class="bi bi-caret-up"></i>
+                    <i class="bi bi-caret-down"></i>
+                </div>
+                <div class="article-body">
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="623" height="350" type="text/html" src="https://www.youtube.com/embed/bak45FvBQcE?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/en">youtubeembedcode en</a></small></div><div><small><a href="https://www.cusl.se/">cusl.se</a></small></div></iframe>
+					<p>
+						This is the course management system where students may select their courses based on their interests, and the system will design the best possible curriculum for them. 
+					</p>
+					<img src="Certificate.jpg" style="width:100%">
+					
+					
+				</div>
+            </article>
+        </section>
+        <section id="honors">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur alias nesciunt accusantium molestiae fugiat eligendi.</p>
+        </section>
+        <section id="teaching">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aspernatur! Dolore esse similique dolor itaque. Accusamus ipsa cupiditate iure, necessitatibus voluptates atque asperiores saepe quibusdam aspernatur, reiciendis esse exercitationem laborum odit autem obcaecati sapiente? Adipisci illum inventore numquam omnis nam delectus perspiciatis at, laudantium iusto quam saepe explicabo excepturi natus sed eveniet magni ad! Debitis nihil tempora esse vero temporibus.</p>
+        </section>
+    </main>
+
+    <noscript>Your browser does not support JavaScript!</noscript>
+    <script>
+        function toggle(element, iClass) {
+            document.querySelectorAll('.icon-wrapper > a > i:not(.bi-cloud-download)').forEach(e => e.style.color = 'var(--icon-color)');
+            document.querySelector('.icon-wrapper > a > i.' + iClass).style.color = 'var(--main-theme)';
+            document.querySelectorAll('section:not(' + element + ')').forEach(e => e.style.display = 'none');
+            document.getElementById(element).style.display = 'unset';
+            document.getElementsByTagName('main')[0].style.gridTemplateColumns = '50px 1fr';
+        }
+        function showProfile() {
+            document.querySelectorAll('.icon-wrapper > a > i:not(.bi-cloud-download)').forEach(e => e.style.color = 'var(--icon-color)');
+            document.querySelector('.icon-wrapper > a > i.bi-person').style.color = 'var(--main-theme)';
+            document.querySelectorAll('section:not(#profile):not(#summary)').forEach(e => e.style.display = 'none');
+            document.getElementById('profile').style.display = 'flex';
+            document.getElementById('summary').style.display = 'unset';
+            document.getElementsByTagName('main')[0].style.gridTemplateColumns = '50px 2fr 3fr';
+        }
+        function toggleTab(e) {
+            if (!e.parentElement.classList.contains("active")) {
+                e.parentElement.classList.add("active")
+            }
+            else {
+                e.parentElement.classList.remove("active")
+            }
+        }
+        let slideIndex = [1, 1, 1, 1, 1];
+        let containers = ['container-1', 'container-2', 'container-3', 'container-4', 'container-5']
+        for (let i = 0; i < containers.length; i ++)
+            showSlides(slideIndex[i], i);
+        function plusSlides(n, i) {
+            showSlides(slideIndex[i-1] += n, i-1);
+        }
+        function showSlides(n, j) {
+            var i;
+            var slides = document.getElementsByClassName(containers[j]);
+            if (n > slides.length) {slideIndex[j] = 1}
+            if (n < 1) {slideIndex[j] = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex[j]-1].style.display = "block";
+        }
+    </script>
+</body>
+</html>
