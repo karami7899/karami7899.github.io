@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Ali Karami — Machine Learning Engineer</title>
+
+    <meta name="description" content="Ali Karami — Machine Learning Engineer at Instacart. Applied AI, LLMs, RAG, agentic ranking systems, and generative models. Published at WACV, TPAMI, and more." />
+    <meta name="author" content="Ali Karami" />
+    <meta name="theme-color" content="#0a0f1c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ali Karami — Machine Learning Engineer" />
+    <meta property="og:description" content="ML Engineer at Instacart. Applied AI, LLMs, RAG, agentic ranking. WACV / TPAMI publications." />
+    <meta property="og:url" content="https://karami7899.github.io/" />
+    <meta property="og:image" content="./assets/og-card.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ali Karami — Machine Learning Engineer" />
+    <meta name="twitter:description" content="ML Engineer at Instacart. Applied AI, LLMs, RAG, agentic ranking. WACV / TPAMI publications." />
+    <meta name="twitter:image" content="./assets/og-card.png" />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0f1c'/%3E%3Ctext x='50' y='64' font-family='ui-sans-serif,system-ui' font-size='52' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EAK%3C/text%3E%3C/svg%3E" />
+
+    <!-- Fonts: Inter + JetBrains Mono for a polished engineer aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- Progressive enhancement: only hide reveal elements if JS is actually running.
+         This guarantees content is visible even when JS fails or is disabled. -->
+    <script>
+      (function () {
+        document.documentElement.classList.add("js-ready");
+        try {
+          var t = localStorage.getItem("ak-theme");
+          if (t === "dark" || t === "light") {
+            document.documentElement.setAttribute("data-theme", t);
+          } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <!-- Accessibility: skip link -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Ambient background -->
+    <div class="ambient" aria-hidden="true">
+      <div class="ambient__grid"></div>
+      <div class="ambient__glow ambient__glow--a"></div>
+      <div class="ambient__glow ambient__glow--b"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="nav" data-nav>
+      <div class="nav__inner">
+        <a href="#top" class="nav__brand" aria-label="Ali Karami — home">
+          <span class="nav__monogram">AK</span>
+          <span class="nav__brand-text">Ali Karami</span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#publications">Research</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Teaching</a>
+        </nav>
+        <div class="nav__actions">
+          <button
+            class="icon-btn"
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle color theme"
+            title="Toggle theme"
+          >
+            <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+          </button>
+          <a class="btn btn--primary nav__cta" href="mailto:karami.a7899@gmail.com">
+            Get in touch
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M5 12h14M13 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <button class="icon-btn nav__menu" id="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h18"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section id="top" class="hero">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <h1 class="hero__title reveal">
+              <span class="hl">Ali Karami</span> — <em>Machine Learning Engineer</em>
+            </h1>
+            <p class="hero__lede reveal">
+              Currently at <a class="inline-link" href="https://www.instacart.com" target="_blank" rel="noreferrer">Instacart</a>,
+              where I ship LLM pipelines, RAG systems, and multi-objective ranking models at scale on GCP —
+              grounded in research published at <span class="mono">WACV</span> and <span class="mono">IEEE TPAMI</span>.
+            </p>
+
+            <div class="hero__cta reveal">
+              <a class="btn btn--primary" href="#experience">
+                See my work
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              <a class="btn btn--ghost" href="./assets/Ali_Karami_CV.pdf" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                Download CV
+              </a>
+            </div>
+
+            <ul class="hero__socials reveal" aria-label="Profiles">
+              <li><a href="https://www.linkedin.com/in/karami7899/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.34 18.34V10.2H5.67v8.14h2.67Zm-1.33-9.3a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1Zm11.32 9.3v-4.45c0-2.38-1.27-3.49-2.97-3.49-1.37 0-1.98.75-2.32 1.28V10.2h-2.67c.04.75 0 8.14 0 8.14h2.67v-4.55c0-.24.02-.48.09-.65.19-.48.63-.98 1.37-.98.97 0 1.36.74 1.36 1.82v4.36h2.47Z"/></svg>
+              </a></li>
+              <li><a href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+              </a></li>
+              <li><a href="https://scholar.google.com/citations?user=-sraCooAAAAJ&hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 8.5 12 14l7.27-4v4.09h1.45V8.5L12 3Zm0 12.55c-3.05 0-5.78 1.3-5.78 2.91V20h11.56v-1.54c0-1.6-2.73-2.91-5.78-2.91Z"/></svg>
+              </a></li>
+              <li><a href="mailto:karami.a7899@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>
+              </a></li>
+            </ul>
+
+            <dl class="hero__stats reveal" aria-label="Highlights at a glance">
+              <div><dt>Incremental GTV shipped</dt><dd>$79M+</dd></div>
+              <div><dt>Years in production ML</dt><dd>4+</dd></div>
+              <div><dt>Top-tier publications</dt><dd>WACV · TPAMI</dd></div>
+            </dl>
+          </div>
+
+          <aside class="hero__portrait reveal" aria-label="Portrait">
+            <div class="portrait">
+              <!-- Drop your photo into ./assets/profile.jpg — if missing, the AK monogram placeholder shows automatically. -->
+              <img src="./assets/profile.jpg" alt="Ali Karami" loading="eager" decoding="async" />
+              <div class="portrait__frame" aria-hidden="true"></div>
+              <div class="portrait__badge">
+                <span class="mono">@Instacart</span>
+                <span class="sep">·</span>
+                <span>ML Engineer</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Marquee of tech stack -->
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span>PyTorch</span><span>TensorFlow</span><span>Hugging Face</span><span>LangChain</span><span>LLMs</span><span>RAG</span><span>RLHF</span><span>Diffusion Models</span><span>GCP</span><span>Azure</span><span>Kubernetes</span><span>Docker</span><span>CUDA</span><span>Weights &amp; Biases</span>
+            <span>PyTorch</span><span>TensorFlow</span><span>Hugging Face</span><span>LangChain</span><span>LLMs</span><span>RAG</span><span>RLHF</span><span>Diffusion Models</span><span>GCP</span><span>Azure</span><span>Kubernetes</span><span>Docker</span><span>CUDA</span><span>Weights &amp; Biases</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section__head">
+            <div class="section__label"><span class="mono">01</span> · About</div>
+            <h2 class="section__title">From research at Mila to shipping AI that moves the needle.</h2>
+          </div>
+          <div class="about">
+            <div class="about__body">
+              <p class="reveal">
+                I’m a <strong>Machine Learning Engineer</strong> with 4+ years of experience building applied AI systems end-to-end — from
+                search and recommendation to <span class="hl">agentic LLM pipelines</span> deployed on GCP and Azure. Today, I lead work on
+                <strong>MAVEN</strong>, Instacart’s production agentic ranking system that orchestrates multiple models and external data
+                sources across millions of daily queries.
+              </p>
+              <p class="reveal">
+                Before Instacart, I built <strong>generative AI pipelines</strong> at Nissan (diffusion models, video anomaly detection) and
+                researched <strong>RLHF for diffusion models</strong> at <a class="inline-link" href="https://mila.quebec" target="_blank" rel="noreferrer">Mila</a>
+                under Prof. Narges Armanfard at McGill. My research appears at
+                <span class="mono">WACV 2025 (Top 10%)</span>, <span class="mono">IEEE TPAMI</span>, and <span class="mono">IEEE/CAA Journal of Automatica Sinica</span>.
+              </p>
+              <p class="reveal">
+                I care about three things: <em>models that actually ship</em>, <em>pipelines that stay reliable at scale</em>, and
+                <em>evaluation that you can trust</em>. I’m happiest somewhere between a research paper and a production runbook.
+              </p>
+            </div>
+            <aside class="about__aside reveal">
+              <div class="card about__card">
+                <div class="card__kicker"><span class="mono">Currently</span></div>
+                <ul class="chips">
+                  <li class="chip chip--accent">Agentic ranking @ Instacart</li>
+                  <li class="chip">LLM eval &amp; observability</li>
+                  <li class="chip">Multi-objective optimization</li>
+                </ul>
+                <div class="card__kicker card__kicker--mt"><span class="mono">Location</span></div>
+                <p>Toronto, Canada · open to remote</p>
+                <div class="card__kicker card__kicker--mt"><span class="mono">Languages</span></div>
+                <p>English · Persian · French (intermediate)</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="section section--alt">
+        <div class="container">
+          <div class="section__head">
+            <div class="section__label"><span class="mono">02</span> · Experience</div>
+            <h2 class="section__title">Shipping AI in the real world.</h2>
+            <p class="section__sub">Selected roles. See <a class="inline-link" href="./assets/Ali_Karami_CV.pdf" target="_blank" rel="noreferrer">full CV</a> for everything.</p>
+          </div>
+
+          <ol class="timeline">
+            <li class="timeline__item reveal">
+              <div class="timeline__marker" aria-hidden="true"></div>
+              <div class="timeline__card card">
+                <div class="timeline__meta">
+                  <span class="mono">Oct 2024 — Present</span>
+                  <span class="sep">·</span>
+                  <span>Toronto, Canada</span>
+                </div>
+                <h3 class="timeline__role">Machine Learning Engineer</h3>
+                <div class="timeline__org">Instacart</div>
+                <ul class="bullets">
+                  <li>Architected and deployed <strong>MAVEN</strong>, a production agentic ranking system orchestrating relevance, conversion, and pricing models with external data — driving <strong>$79M in incremental GTV</strong> across millions of daily queries on GCP.</li>
+                  <li>Built an <strong>LLM-based data labeling pipeline</strong> using prompt engineering and pretrained LMs to replace manual workflows — <strong>reducing cost-per-label by 60%</strong> and improving downstream accuracy.</li>
+                  <li>Designed <strong>evaluation &amp; observability frameworks</strong> tracking LLM-native metrics (accuracy, latency, cost-per-request, tokens/sec) with granular tracing for reliability at scale.</li>
+                  <li>Lead developer on a retailer-specific AI solution — delivered <strong>$5M in Enterprise iGTV</strong>.</li>
+                  <li>Led end-to-end development of multi-objective models integrating heterogeneous signals across cloud serving and APIs.</li>
+                </ul>
+                <ul class="chips chips--compact" aria-label="Tech used">
+                  <li class="chip">Python</li><li class="chip">LLMs</li><li class="chip">RAG</li><li class="chip">Agentic Systems</li><li class="chip">GCP</li><li class="chip">Ranking</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="timeline__item reveal">
+              <div class="timeline__marker" aria-hidden="true"></div>
+              <div class="timeline__card card">
+                <div class="timeline__meta">
+                  <span class="mono">Jan 2023 — Jan 2024</span>
+                  <span class="sep">·</span>
+                  <span>Toronto, Canada</span>
+                </div>
+                <h3 class="timeline__role">Generative AI Researcher</h3>
+                <div class="timeline__org">Nissan Motor Corporation</div>
+                <ul class="bullets">
+                  <li>Engineered production-ready <strong>generative AI pipelines</strong> (diffusion models, self-supervised learning) for image &amp; video generation — <strong>+6% AUC</strong> with <strong>40% lower training cost</strong>.</li>
+                  <li>Developed <strong>multi-modal systems</strong> integrating graph-based attention with real-time sensor data for video anomaly detection — <strong>+8% AUC</strong>, deployed on multi-GPU cloud infrastructure.</li>
+                  <li>Collaborated cross-functionally through design and code reviews to transition prototypes into production systems.</li>
+                </ul>
+                <ul class="chips chips--compact" aria-label="Tech used">
+                  <li class="chip">Diffusion</li><li class="chip">Self-Supervised</li><li class="chip">GNNs</li><li class="chip">Multi-GPU</li><li class="chip">PyTorch</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="timeline__item reveal">
+              <div class="timeline__marker" aria-hidden="true"></div>
+              <div class="timeline__card card">
+                <div class="timeline__meta">
+                  <span class="mono">Sep 2022 — Sep 2024</span>
+                  <span class="sep">·</span>
+                  <span>Montreal, Canada</span>
+                </div>
+                <h3 class="timeline__role">NLP Research Assistant</h3>
+                <div class="timeline__org">Mila — Quebec AI Institute</div>
+                <ul class="bullets">
+                  <li>Built <strong>RLHF fine-tuning pipelines</strong> for diffusion models, treating denoising as multi-step decision-making and optimizing generation quality through reward-driven training.</li>
+                  <li>Fine-tuned <strong>Stable Diffusion</strong> on human-feedback objectives (aesthetic quality, compressibility) — end-to-end GenAI model optimization and text-to-image generation.</li>
+                  <li>Orchestrated feedback from <strong>vision-language models (LLaVA)</strong> to optimize prompt–image alignment — <strong>+10% BERTScore</strong>.</li>
+                </ul>
+                <ul class="chips chips--compact" aria-label="Tech used">
+                  <li class="chip">RLHF</li><li class="chip">Stable Diffusion</li><li class="chip">LLaVA</li><li class="chip">Hugging Face</li><li class="chip">Flax</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Publications & Patents -->
+      <section id="publications" class="section">
+        <div class="container">
+          <div class="section__head">
+            <div class="section__label"><span class="mono">03</span> · Research</div>
+            <h2 class="section__title">Published research &amp; patents.</h2>
+            <p class="section__sub">Peer-reviewed work in top ML/CV venues. <a class="inline-link" href="https://scholar.google.com/citations?user=-sraCooAAAAJ&hl=en" target="_blank" rel="noreferrer">See Google Scholar →</a></p>
+          </div>
+
+          <div class="pubs">
+            <article class="pub card reveal">
+              <header class="pub__head">
+                <span class="badge badge--gold">WACV 2025 · Top 10%</span>
+                <span class="mono pub__year">2025</span>
+              </header>
+              <h3 class="pub__title">Graph-Jigsaw Conditioned Diffusion Model for Skeleton-based Video Anomaly Detection</h3>
+              <p class="pub__authors"><strong>Ali Karami</strong>, Thi Kieu Khanh Ho, Narges Armanfard</p>
+              <p class="pub__venue">IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</p>
+              <div class="pub__links">
+                <a class="pill" href="https://scholar.google.com/citations?user=-sraCooAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar ↗</a>
+                <a class="pill" href="https://openaccess.thecvf.com/content/WACV2025/" target="_blank" rel="noreferrer">WACV ↗</a>
+              </div>
+            </article>
+
+            <article class="pub card reveal">
+              <header class="pub__head">
+                <span class="badge badge--blue">IEEE TPAMI</span>
+                <span class="mono pub__year">2024</span>
+              </header>
+              <h3 class="pub__title">Graph-based Time-Series Anomaly Detection: A Survey</h3>
+              <p class="pub__authors">Thi Kieu Khanh Ho, <strong>Ali Karami</strong>, Narges Armanfard</p>
+              <p class="pub__venue">IEEE Transactions on Pattern Analysis and Machine Intelligence</p>
+              <div class="pub__links">
+                <a class="pill" href="https://scholar.google.com/citations?user=-sraCooAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar ↗</a>
+                <a class="pill" href="https://ieeexplore.ieee.org/" target="_blank" rel="noreferrer">IEEE ↗</a>
+              </div>
+            </article>
+
+            <article class="pub card reveal">
+              <header class="pub__head">
+                <span class="badge">IEEE/CAA J. Automatica Sinica</span>
+                <span class="mono pub__year">2024</span>
+              </header>
+              <h3 class="pub__title">Dynamic Traffic Light Management by Federated Deep Reinforcement Learning</h3>
+              <p class="pub__authors"><strong>Ali Karami</strong> et al.</p>
+              <p class="pub__venue">IEEE/CAA Journal of Automatica Sinica</p>
+              <div class="pub__links">
+                <a class="pill" href="https://scholar.google.com/citations?user=-sraCooAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar ↗</a>
+              </div>
+            </article>
+
+            <article class="pub card reveal">
+              <header class="pub__head">
+                <span class="badge">Digital Signal Processing · Elsevier</span>
+                <span class="mono pub__year">2022</span>
+              </header>
+              <h3 class="pub__title">Dictionary Learning for Sparse Representation with HMM Dependency</h3>
+              <p class="pub__authors">S. Akhavan, <strong>Ali Karami</strong>, et al.</p>
+              <p class="pub__venue">Digital Signal Processing (Elsevier)</p>
+              <div class="pub__links">
+                <a class="pill" href="https://scholar.google.com/citations?user=-sraCooAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar ↗</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="patents">
+            <h3 class="patents__title"><span class="mono">Patent</span></h3>
+            <article class="card patent reveal">
+              <div class="patent__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.39 4.84L20 8l-4 3.9.94 5.5L12 14.8 7.06 17.4 8 11.9 4 8l5.61-1.16L12 2z"/></svg>
+              </div>
+              <div>
+                <h4 class="patent__title">Personalized Meal Planning and Recipe-to-Cart Optimization in Online Grocery Platforms</h4>
+                <p class="patent__meta">Inventors: <strong>Ali Karami</strong>, Raochuan Fan · Assignee: Instacart</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section section--alt">
+        <div class="container">
+          <div class="section__head">
+            <div class="section__label"><span class="mono">04</span> · Skills</div>
+            <h2 class="section__title">The stack I reach for.</h2>
+          </div>
+
+          <div class="skills">
+            <article class="skill-group card reveal">
+              <header>
+                <div class="skill-group__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
+                </div>
+                <h3>Languages</h3>
+              </header>
+              <ul class="chips">
+                <li class="chip">Python</li><li class="chip">C / C++</li><li class="chip">TypeScript / JavaScript</li><li class="chip">SQL</li><li class="chip">MATLAB</li>
+              </ul>
+            </article>
+
+            <article class="skill-group card reveal">
+              <header>
+                <div class="skill-group__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5ZM6 14h12l-1 6H7l-1-6Z"/></svg>
+                </div>
+                <h3>Applied AI</h3>
+              </header>
+              <ul class="chips">
+                <li class="chip chip--accent">LLMs</li><li class="chip chip--accent">Prompt Engineering</li><li class="chip chip--accent">Fine-Tuning</li><li class="chip chip--accent">RAG</li><li class="chip">RLHF</li><li class="chip">Agentic Workflows</li><li class="chip">Multi-Agent Systems</li><li class="chip">Multi-Modal Models</li><li class="chip">Diffusion Models</li>
+              </ul>
+            </article>
+
+            <article class="skill-group card reveal">
+              <header>
+                <div class="skill-group__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/></svg>
+                </div>
+                <h3>Frameworks</h3>
+              </header>
+              <ul class="chips">
+                <li class="chip">PyTorch</li><li class="chip">TensorFlow</li><li class="chip">Hugging Face</li><li class="chip">LangChain</li><li class="chip">scikit-learn</li><li class="chip">Flax</li><li class="chip">PyTorch Lightning</li><li class="chip">OpenCV</li>
+              </ul>
+            </article>
+
+            <article class="skill-group card reveal">
+              <header>
+                <div class="skill-group__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 19a4 4 0 0 1 0-8 6 6 0 0 1 12 0 3.5 3.5 0 0 1 0 7H6Z"/></svg>
+                </div>
+                <h3>Cloud &amp; Infrastructure</h3>
+              </header>
+              <ul class="chips">
+                <li class="chip chip--accent">GCP</li><li class="chip">Azure · Cognitive Search</li><li class="chip">Azure ML</li><li class="chip">Azure Data Factory</li><li class="chip">Docker</li><li class="chip">Kubernetes</li>
+              </ul>
+            </article>
+
+            <article class="skill-group card reveal">
+              <header>
+                <div class="skill-group__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+                </div>
+                <h3>MLOps &amp; Observability</h3>
+              </header>
+              <ul class="chips">
+                <li class="chip">Model Serving</li><li class="chip">Evaluation Pipelines</li><li class="chip">Performance Monitoring</li><li class="chip">Model Compression</li><li class="chip">CUDA Parallelization</li><li class="chip">CI/CD</li><li class="chip">Weights &amp; Biases</li>
+              </ul>
+            </article>
+
+            <article class="skill-group card reveal">
+              <header>
+                <div class="skill-group__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M3 12h18"/></svg>
+                </div>
+                <h3>Research Focus</h3>
+              </header>
+              <ul class="chips">
+                <li class="chip">Generative Models</li><li class="chip">Multi-Modal Learning</li><li class="chip">Reinforcement Learning</li><li class="chip">Graph Neural Networks</li><li class="chip">Anomaly Detection</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Teaching & Education -->
+      <section id="education" class="section">
+        <div class="container">
+          <div class="section__head">
+            <div class="section__label"><span class="mono">05</span> · Teaching &amp; Education</div>
+            <h2 class="section__title">Mentorship and academic foundations.</h2>
+          </div>
+
+          <div class="grid-2">
+            <div class="card reveal">
+              <h3 class="card__title">Teaching</h3>
+              <ul class="bullets">
+                <li>
+                  <strong>COMP 579 — Reinforcement Learning</strong> · Teaching Assistant · McGill University · Winter 2024<br />
+                  Instructor: <em>Prof. Doina Precup</em> (Research Team Lead, Google DeepMind). Mentored 60+ students on RL algorithms and policy optimization.
+                </li>
+                <li>
+                  <strong>COMP 424 — Artificial Intelligence</strong> · Teaching Assistant · McGill University · Fall 2023<br />
+                  Instructor: <em>Prof. David Meger</em>. Led tutorials on search, planning, and machine learning fundamentals.
+                </li>
+              </ul>
+            </div>
+            <div class="card reveal">
+              <h3 class="card__title">Education</h3>
+              <ul class="bullets">
+                <li>
+                  <strong>M.Sc., Electrical &amp; Computer Engineering</strong><br />
+                  McGill University / Mila — Quebec AI Institute · 2022–2024<br />
+                  GPA: <strong>4.0 / 4.0</strong> · Research: Generative AI, multi-modal learning, reinforcement learning<br />
+                  Supervisor: Prof. Narges Armanfard.
+                </li>
+                <li>
+                  <strong>B.Sc., Electrical Engineering</strong><br />
+                  University of Tehran · 2017–2021<br />
+                  GPA: 3.81 / 4.0 · Systems programming (C/C++), data structures, algorithms.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>© <span id="year"></span> Ali Karami. Built with care in Toronto.</div>
+        <div class="footer__links">
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
